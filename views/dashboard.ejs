@@ -1,0 +1,55 @@
+<%- include('partials/header') -%>
+
+<main class="px-16 pt-16">
+<div class="container p-4 bg-white rounded-md">
+<h4 class="text-lg my-2 uppercase font-bold">Dashboard</h4>
+<h2 class="text-5xl my-6 ">Hello, <%- user.firstName %>
+</h2>
+
+<% if (habits.length> 0) { %>
+  <p>Here are your habits</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Habit I want to change</th>
+        <th>What it gives me</th>
+        <th>What I can replace it with</th>
+        <th>So I will</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i=0; i<habits.length; i++) { %>
+        <tr>
+          <td>
+            <a href="/habits/<%= habits[i]._id %>">
+              <%= habits[i].name %>
+            </a>
+          </td>
+          <td>
+            <%= habits[i].gives %>
+          </td>
+          <td>
+            <%= habits[i].replacement %>
+          </td>
+          <td>
+            <%= habits[i].change %>
+          </td>
+          <td>
+            <a href="/habits/edit/<%= habits[i]._id %>" class="btn blue btn-float"><i class="fas fa-edit small-text"></i></a>
+            <form action="/habits/<%= habits[i]._id %>" method="post" id="delete-form">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit" class="btn red btn-float"><i class="fas fa-trash small-text"></i></button>
+            </form>
+          </td>
+        </tr>
+        <% } %>
+    </tbody>
+  </table>
+  <% } else { %>
+    <p class="text-base">You haven't listed any habits yet.</p>
+  <% } %>
+</div>
+</main>
+
+<%- include('partials/footer') -%>

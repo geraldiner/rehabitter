@@ -1,0 +1,11 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 14pt;
+}
+.gradient {
+	min-height: 100vh;
+	background-repeat: no-repeat;
+	background: linear-gradient(45deg, #ff4d04, #fcff65);
+}
