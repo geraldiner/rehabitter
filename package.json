@@ -1,41 +1,48 @@
 {
   "name": "rehabitter",
   "version": "1.0.0",
-  "description": "Helping you replace your current bad habits with better ones",
+  "description": "Helping you replace bad habits with better ones",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "dev": "cross-env NODE_ENV=development npm-run-all -l -p dev:*",
-    "dev:start": "nodemon server",
-    "dev:tailwind": "postcss ./public/css/tailwind.src.css -o ./public/css/tailwind.css",
-    "dev:watch": "onchange 'tailwind.config.js' 'public/**/*.css' -e './public/css/tailwind.css' -- npm run dev:tailwind"
+    "start": "npm-run-all -l -p start:*",
+    "start:server": "nodemon server",
+    "start:tailwind": "postcss ./public/css/tailwind.src.css -o ./public/css/tailwind.css",
+    "start:watch": "onchange 'tailwind.config.js' 'public/**/*.css' -e './public/css/tailwind.css' -- npm run start:tailwind"
   },
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "connect-mongo": "^3.2.0",
-    "dotenv": "^8.2.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "express-flash": "^0.0.2",
-    "express-session": "^1.17.1",
-    "method-override": "^3.0.0",
-    "mongodb": "^3.6.5",
-    "mongoose": "^5.12.3",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.7",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "validator": "^13.6.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geraldiner/rehabitter.git"
   },
+  "keywords": [],
+  "author": "Geraldine R",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geraldiner/rehabitter/issues"
+  },
+  "homepage": "https://github.com/geraldiner/rehabitter#readme",
   "devDependencies": {
-    "autoprefixer": "^10.3.3",
-    "cross-env": "^7.0.3",
+    "autoprefixer": "^10.3.4",
+    "nodemon": "^2.0.12",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
     "postcss": "^8.3.6",
     "postcss-cli": "^8.3.1",
-    "tailwindcss": "^2.2.8"
+    "tailwindcss": "^2.2.10"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-mongo": "^4.5.0",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.0.5",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "validator": "^13.6.0"
   }
 }

@@ -1,48 +1,57 @@
 const express = require("express");
-const app = express();
+const session = require("express-session");
+const flash = require("express-flash");
+const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo");
 const methodOverride = require("method-override");
-const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
-const habitsRoutes = require("./routes/habits");
 
-//Use .env file in config folder
+// Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
 // Passport config
 require("./config/passport")(passport);
 
-//Connect To Database
+// Connect to MongoDB database
 connectDB();
 
-//Using EJS for views
+const app = express();
+
 app.set("view engine", "ejs");
 
-//Static Folder
+// Static Folder
 app.use(express.static("public"));
+app.use(expressLayouts);
 
-//Body Parsing
+// Body Parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//Logging
+// Logging
 app.use(logger("dev"));
 
-//Use forms for put / delete
+// Use forms for put / delete
 app.use(methodOverride("_method"));
 
-// Setup Sessions - stored in MongoDB
+// Sessions middleware
 app.use(
 	session({
-		secret: "supersecret",
+		secret: "secretsecret",
 		resave: false,
 		saveUninitialized: false,
-		store: new MongoStore({ mongooseConnection: mongoose.connection }),
+		store: MongoStore.create({
+			mongoUrl: process.env.MONGO_URI,
+			mongooseConnection: mongoose.connection,
+		}),
+		cookie: {
+			sameSite: "none",
+			secure: true,
+			maxAge: 1000 * 60 * 60 * 24, // One day
+		},
 	}),
 );
 
@@ -50,14 +59,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Use flash messages for errors, info, ect...
+// Use flash messages for errors
 app.use(flash());
 
-//Setup Routes For Which The Server Is Listening
+// Set up main routes
 app.use("/", mainRoutes);
-app.use("/habits", habitsRoutes);
 
-//Server Running
-app.listen(process.env.PORT, () => {
-	console.log("Server is running, you better catch it!");
-});
+// Server is running, better catch it..
+app.listen(process.env.PORT, console.log(`Server running on port http://localhost:${process.env.PORT}`));
