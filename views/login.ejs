@@ -1,1 +1,21 @@
-<h1>Login Page</h1>
+<h1 class="text-4xl text-center mb-6 font-bold">Welcome Back!</h1>
+<div>
+	<% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+	<div class="text-red-400"><%= el.msg %></div>
+	<% }) %> <% } %> <% if (locals.messages.info) { %> <% messages.info.forEach( el => { %>
+	<div class="text-red-400"><%= el.msg %></div>
+	<% }) %> <% } %>
+	<form action="/login" method="POST">
+		<div class="mb-4">
+			<label class="block text-grey-darker text-sm mb-2" for="email">Email </label>
+			<input class="border rounded w-full py-2 px-3 text-grey-darker" id="email" type="email" placeholder="john@example.com" />
+		</div>
+		<div class="mb-6">
+			<label class="block text-grey-darker text-sm mb-2" for="password">Password </label>
+			<input class="border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" id="password" type="password" placeholder="password" />
+		</div>
+		<div class="flex items-center justify-center">
+			<button class="bg-blue-600 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="submit">Log In</button>
+		</div>
+	</form>
+</div>
