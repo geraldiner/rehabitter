@@ -12,7 +12,6 @@ module.exports = {
 			res.render("../views/dashboard.ejs", locals);
 		} catch (error) {
 			console.error(error);
-			res.render("./error/500");
 		}
 	},
 };

@@ -1,4 +1,39 @@
 <div class="w-4/5 bg-white p-4 rounded-md mx-auto space-y-4">
 	<h4 class="text-sm font-bold uppercase">Dashboard</h4>
 	<h2 class="text-xl">Hello, <%- user.firstName %></h2>
+	<% if (habits.length> 0) { %>
+	<p>Here are your habits</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Habit I want to change</th>
+				<th>What it gives me</th>
+				<th>What I can replace it with</th>
+				<th>So I will</th>
+				<th>Options</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% habits.forEach(h => { %>
+			<tr>
+				<td>
+					<a href="/habits/<%= h._id %>"> <%= h.name %> </a>
+				</td>
+				<td><%= h.gives %></td>
+				<td><%= h.replacement %></td>
+				<td><%= h.change %></td>
+				<td>
+					<a href="/habits/edit/<%= h._id %>" class="btn blue btn-float"><i class="fas fa-edit small-text"></i></a>
+					<form action="/habits/<%= h._id %>" method="post">
+						<input type="hidden" name="_method" value="DELETE" />
+						<button type="submit" class="btn red btn-float"><i class="fas fa-trash small-text"></i></button>
+					</form>
+				</td>
+			</tr>
+			<% }) %>
+		</tbody>
+	</table>
+	<% } else { %>
+	<p>You haven't added any habits yet. <a href="/habits/add">Add a new habit now.</a></p>
+	<% } %>
 </div>

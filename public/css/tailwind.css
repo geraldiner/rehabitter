@@ -575,6 +575,12 @@ video {
   border-color: rgba(229, 231, 235, var(--tw-border-opacity));
 }
 
+main a {
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgba(139, 92, 246, var(--tw-text-opacity));
+}
+
 .container {
   width: 100%;
 }

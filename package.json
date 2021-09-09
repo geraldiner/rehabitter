@@ -4,10 +4,11 @@
   "description": "Helping you replace bad habits with better ones",
   "main": "server.js",
   "scripts": {
-    "start": "npm-run-all -l -p start:*",
+    "start": "npm-run-all -l -p start:**:**",
     "start:server": "nodemon server",
     "start:tailwind": "postcss ./public/css/tailwind.src.css -o ./public/css/tailwind.css",
-    "start:watch": "onchange 'tailwind.config.js' 'public/**/*.css' -e './public/css/tailwind.css' -- npm run start:tailwind"
+    "start:watch:config": "onchange './tailwind.config.js' -- npm run start:tailwind",
+    "start:watch:src": "onchange './public/css/tailwind.src.css' -- npm run start:tailwind"
   },
   "repository": {
     "type": "git",
