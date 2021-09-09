@@ -9,9 +9,17 @@ const habitsController = require("../controllers/habits");
 // @route GET /
 router.get("/", ensureGuest, homeController.getIndex);
 
+// @desc Sign up form
+// @route GET /signup
+router.get("/signup", authController.getSignup);
+
 // @desc  Login form
 // @route GET /login
 router.get("/login", authController.getLogin);
+
+// @desc  Process sign up form
+// @route POST /signup
+router.post("/signup", authController.postSignup);
 
 // @desc  Process login form
 // @route POST /login
