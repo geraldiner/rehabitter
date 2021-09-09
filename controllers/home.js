@@ -6,6 +6,7 @@ module.exports = {
 		const locals = {
 			title: "",
 			layout: "../views/layouts/landing.ejs",
+			user: null,
 		};
 		res.render("../views/index.ejs", locals);
 	},

@@ -43,15 +43,10 @@ app.use(
 		secret: "secretsecret",
 		resave: false,
 		saveUninitialized: false,
-		store: MongoStore.create({
+		store: new MongoStore({
 			mongoUrl: process.env.MONGO_URI,
 			mongooseConnection: mongoose.connection,
 		}),
-		cookie: {
-			sameSite: "none",
-			secure: true,
-			maxAge: 1000 * 60 * 60 * 24, // One day
-		},
 	}),
 );
 
