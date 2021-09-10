@@ -3,37 +3,28 @@
 	<h2 class="text-xl">Hello, <%- user.firstName %></h2>
 	<% if (habits.length> 0) { %>
 	<p>Here's what you're working on:</p>
-	<table class="table-auto border-separate border-2 border-gray-300">
-		<thead>
-			<tr>
-				<th class="w-1/5">Habit I want to change</th>
-				<th class="w-1/5">What it gives me</th>
-				<th class="w-1/5">What I can replace it with</th>
-				<th class="w-1/5">So I will</th>
-				<th class="w-1/5">Options</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% habits.forEach(h => { %>
-			<tr>
-				<td>
-					<a href="/habits/<%= h._id %>"> <%= h.name %> </a>
-				</td>
-				<td><%= h.gives %></td>
-				<td><%= h.replacement %></td>
-				<td><%= h.change %></td>
-				<td>
-					<a href="/habits/edit/<%= h._id %>" class="btn blue btn-float"><i class="fas fa-edit small-text"></i></a>
-					<form action="/habits/<%= h._id %>" method="post">
-						<input type="hidden" name="_method" value="DELETE" />
-						<button type="submit" class="btn red btn-float"><i class="fas fa-trash small-text"></i></button>
-					</form>
-				</td>
-			</tr>
-			<% }) %>
-		</tbody>
-	</table>
-	<% } else { %>
-	<p>You haven't added any habits yet. <a href="/habits/add">Add a new habit now.</a></p>
+
+	<% habits.forEach(h => { %>
+	<div class="">
+		<div class="habit-item">
+			<p>
+				I want to change my habit of <%= h.name %>. It gives me <%= h.gives %>. But I can replace it with <%= h.replacement %>. So I will <%= h.change
+				%> instead.
+			</p>
+			<div class="">
+				<a href="/habits/edit/<%= h._id %>" class="text-sm habit-btn bg-green-600 hover:bg-green-900">edit</a>
+				<form class="inline-block" action="/habits/<%= h._id %>" method="post">
+					<input type="hidden" name="_method" value="DELETE" />
+					<button type="submit" class="text-sm habit-btn bg-red-600 hover:bg-red-900">delete</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<% }) %> <% } else { %>
+	<p>You haven't added any habits yet.</p>
 	<% } %>
+	<div class="">
+		<a class="add-btn" href="/habits/add">Add a new habit</a>
+	</div>
 </div>
