@@ -4,11 +4,11 @@
   "description": "Helping you replace bad habits with better ones",
   "main": "server.js",
   "scripts": {
-    "start": "npm-run-all -l -p start:**:**",
+    "start": "concurrently \"npm run start:watch:*\" \"npm run start:server\"",
     "start:server": "nodemon server",
     "start:tailwind": "postcss ./public/css/tailwind.src.css -o ./public/css/tailwind.css",
-    "start:watch:config": "onchange './tailwind.config.js' -- npm run start:tailwind",
-    "start:watch:src": "onchange './public/css/tailwind.src.css' -- npm run start:tailwind"
+    "start:watch:config": "onchange -k './tailwind.config.js' -- npm run start:tailwind",
+    "start:watch:src": "onchange 'public/css/tailwind.src.css' -- npm run start:tailwind"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/geraldiner/rehabitter#readme",
   "devDependencies": {
     "autoprefixer": "^10.3.4",
+    "concurrently": "^6.2.1",
     "nodemon": "^2.0.12",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",

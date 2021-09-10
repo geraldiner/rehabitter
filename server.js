@@ -9,6 +9,7 @@ const methodOverride = require("method-override");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
+const habitRoutes = require("./routes/habits");
 
 // Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -59,6 +60,7 @@ app.use(flash());
 
 // Set up main routes
 app.use("/", mainRoutes);
+app.use("/habits", habitRoutes);
 
 // Server is running, better catch it..
 app.listen(process.env.PORT, console.log(`Server running on port http://localhost:${process.env.PORT}`));

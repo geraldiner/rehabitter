@@ -14,4 +14,21 @@ module.exports = {
 			console.error(error);
 		}
 	},
+	addHabit: (req, res) => {
+		const locals = {
+			title: "Add New Habit",
+			layout: "./layouts/form",
+			user: req.user,
+		};
+		res.render("../views/habits/add.ejs", locals);
+	},
+	postHabit: async (req, res) => {
+		try {
+			req.body.user = req.user.id;
+			await Habit.create(req.body);
+			res.redirect("/dashboard");
+		} catch {
+			console.error(error);
+		}
+	},
 };
