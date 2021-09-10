@@ -2,15 +2,15 @@
 	<h4 class="text-sm font-bold uppercase">Dashboard</h4>
 	<h2 class="text-xl">Hello, <%- user.firstName %></h2>
 	<% if (habits.length> 0) { %>
-	<p>Here are your habits</p>
-	<table>
+	<p>Here's what you're working on:</p>
+	<table class="table-auto border-separate border-2 border-gray-300">
 		<thead>
 			<tr>
-				<th>Habit I want to change</th>
-				<th>What it gives me</th>
-				<th>What I can replace it with</th>
-				<th>So I will</th>
-				<th>Options</th>
+				<th class="w-1/5">Habit I want to change</th>
+				<th class="w-1/5">What it gives me</th>
+				<th class="w-1/5">What I can replace it with</th>
+				<th class="w-1/5">So I will</th>
+				<th class="w-1/5">Options</th>
 			</tr>
 		</thead>
 		<tbody>
