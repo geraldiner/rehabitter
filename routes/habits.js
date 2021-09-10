@@ -20,4 +20,16 @@ router.get("/edit/:id", ensureAuth, habitsController.editHabit);
 // @route PUT /habits/:id
 router.put("/:id", ensureAuth, habitsController.postEdit);
 
+// @desc  Delete a habit
+// @route DELETE /habits/:id
+router.delete("/:id", ensureAuth, async (req, res) => {
+	try {
+		await Habit.remove({ _id: req.params.id });
+		res.redirect("/dashboard");
+	} catch (error) {
+		console.error(error);
+		res.render("error/500", { title: "Server Error", layout: "./layouts/main" });
+	}
+});
+
 module.exports = router;

@@ -8,8 +8,8 @@
 	<div class="">
 		<div class="habit-item">
 			<p>
-				I want to change my habit of <%= h.name %>. It gives me <%= h.gives %>. But I can replace it with <%= h.replacement %>. So I will <%= h.change
-				%> instead.
+				I want to change my habit of <span class="habit-val"><%= h.name %></span>. It gives me <span class="habit-val"><%= h.gives %></span>. But I
+				can replace it with <span class="habit-val"><%= h.replacement %></span>. So I will <span class="habit-val"><%= h.change %></span> instead.
 			</p>
 			<div class="">
 				<a href="/habits/edit/<%= h._id %>" class="text-sm habit-btn bg-green-600 hover:bg-green-900">edit</a>
