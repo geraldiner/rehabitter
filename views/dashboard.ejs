@@ -3,25 +3,28 @@
 	<h2 class="text-xl">Hello, <%- user.firstName %></h2>
 	<% if (habits.length> 0) { %>
 	<p>Here's what you're working on:</p>
-
-	<% habits.forEach(h => { %>
-	<div class="">
-		<div class="habit-item">
-			<p>
-				I want to change my habit of <span class="habit-val"><%= h.name %></span>. It gives me <span class="habit-val"><%= h.gives %></span>. But I
-				can replace it with <span class="habit-val"><%= h.replacement %></span>. So I will <span class="habit-val"><%= h.change %></span> instead.
-			</p>
-			<div class="">
-				<a href="/habits/edit/<%= h._id %>" class="text-sm habit-btn bg-green-600 hover:bg-green-900">edit</a>
-				<form class="inline-block" action="/habits/<%= h._id %>" method="post">
-					<input type="hidden" name="_method" value="DELETE" />
-					<button type="submit" class="text-sm habit-btn bg-red-600 hover:bg-red-900">delete</button>
-				</form>
+	<div class="mb-4">
+		<% habits.forEach(h => { %>
+		<div class="habit-item flex justify-center">
+			<div class="w-1/2 habit-desc">
+				<p>
+					I want to change my habit of <span class="habit-val"><%= h.name %></span>. It gives me <span class="habit-val"><%= h.gives %></span>. But I
+					can replace it with <span class="habit-val"><%= h.replacement %></span>. So I will <span class="habit-val"><%= h.change %></span> instead.
+				</p>
+				<div class="">
+					<a href="/habits/edit/<%= h._id %>" class="text-sm habit-btn bg-green-600 hover:bg-green-900">edit</a>
+					<form class="inline-block" action="/habits/<%= h._id %>" method="post">
+						<input type="hidden" name="_method" value="DELETE" />
+						<button type="submit" class="text-sm habit-btn bg-red-600 hover:bg-red-900">delete</button>
+					</form>
+				</div>
 			</div>
+			<div class="w-1/2 habit-tracker"></div>
 		</div>
-	</div>
 
-	<% }) %> <% } else { %>
+		<% }) %>
+	</div>
+	<% } else { %>
 	<p>You haven't added any habits yet.</p>
 	<% } %>
 	<div class="">
