@@ -6,7 +6,7 @@
 	<div class="mb-4">
 		<% habits.forEach(h => { %>
 		<div class="habit-item flex justify-center">
-			<div class="w-1/2 habit-desc">
+			<div class="habit-desc">
 				<p>
 					I want to change my habit of <span class="habit-val"><%= h.name %></span>. It gives me <span class="habit-val"><%= h.gives %></span>. But I
 					can replace it with <span class="habit-val"><%= h.replacement %></span>. So I will <span class="habit-val"><%= h.change %></span> instead.
@@ -19,7 +19,6 @@
 					</form>
 				</div>
 			</div>
-			<div class="w-1/2 habit-tracker"></div>
 		</div>
 
 		<% }) %>
