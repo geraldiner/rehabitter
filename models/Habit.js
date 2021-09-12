@@ -21,6 +21,11 @@ const HabitSchema = new mongoose.Schema({
 		required: true,
 		trim: true,
 	},
+	status: {
+		type: String,
+		required: true,
+		trim: true,
+	},
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User",
@@ -32,8 +37,8 @@ const HabitSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Habit", HabitSchema);
- // "start": "concurrently \"npm run start:watch:*\" \"npm run start:server\"",
-    // "start:server": "nodemon server",
-    // "start:tailwind": "postcss ./public/css/tailwind.src.css -o ./public/css/tailwind.css",
-    // "start:watch:config": "onchange -k './tailwind.config.js' -- npm run start:tailwind",
-    // "start:watch:src": "onchange --await-write-finish 2000 'public/css/tailwind.src.css' -- npm run start:tailwind"
+// "start": "concurrently \"npm run start:watch:*\" \"npm run start:server\"",
+// "start:server": "nodemon server",
+// "start:tailwind": "postcss ./public/css/tailwind.src.css -o ./public/css/tailwind.css",
+// "start:watch:config": "onchange -k './tailwind.config.js' -- npm run start:tailwind",
+// "start:watch:src": "onchange --await-write-finish 2000 'public/css/tailwind.src.css' -- npm run start:tailwind"

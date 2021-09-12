@@ -8,7 +8,6 @@
     "start:server": "nodemon server",
     "start:watch:tailwind": "onchange tailwind.config.js ./src/css/tailwind.src.css -- npm run build:tailwind",
     "build:tailwind": "postcss build ./src/css/tailwind.src.css -o ./public/css/tailwind.css"
-
   },
   "repository": {
     "type": "git",
@@ -43,6 +42,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.17.2",
     "method-override": "^3.0.0",
+    "moment": "^2.29.1",
     "mongoose": "^6.0.5",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",

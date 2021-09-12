@@ -1,4 +1,5 @@
 const Habit = require("../models/Habit");
+const getWeek = require("../middleware/getWeek");
 module.exports = {
 	getDashboard: async (req, res) => {
 		try {
@@ -8,6 +9,7 @@ module.exports = {
 				layout: "../views/layouts/main",
 				user: req.user,
 				habits: habits,
+				week: getWeek(),
 			};
 			res.render("../views/dashboard.ejs", locals);
 		} catch (error) {
@@ -25,7 +27,7 @@ module.exports = {
 	postHabit: async (req, res) => {
 		try {
 			req.body.user = req.user.id;
-			await Habit.create(req.body);
+			await Habit.create({ status: "incomplete", ...req.body });
 			res.redirect("/dashboard");
 		} catch {
 			console.error(error);

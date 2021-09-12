@@ -5,19 +5,25 @@
 	<p>Here's what you're working on:</p>
 	<div class="mb-4">
 		<% habits.forEach(h => { %>
-		<div class="habit-item flex justify-center">
-			<div class="habit-desc">
-				<p>
-					I want to change my habit of <span class="habit-val"><%= h.name %></span>. It gives me <span class="habit-val"><%= h.gives %></span>. But I
-					can replace it with <span class="habit-val"><%= h.replacement %></span>. So I will <span class="habit-val"><%= h.change %></span> instead.
-				</p>
-				<div class="">
-					<a href="/habits/edit/<%= h._id %>" class="text-sm habit-btn bg-green-600 hover:bg-green-900">edit</a>
-					<form class="inline-block" action="/habits/<%= h._id %>" method="post">
-						<input type="hidden" name="_method" value="DELETE" />
-						<button type="submit" class="text-sm habit-btn bg-red-600 hover:bg-red-900">delete</button>
-					</form>
+		<div class="habit-item space-y-4">
+			<p class="habit-desc">
+				I want to change my habit of <span class="habit-val"><%= h.name %></span>. It gives me <span class="habit-val"><%= h.gives %></span>. But I
+				can replace it with <span class="habit-val"><%= h.replacement %></span>. So I will <span class="habit-val"><%= h.change %></span> instead.
+			</p>
+			<div class="habit-tracker">
+				<h3 class="text-lg">Weekly Tracker</h3>
+				<div class="flex justify-between items-center">
+					<% week.forEach(w => { %>
+					<div class="day-item"><p><%= w %></p></div>
+					<% }) %>
 				</div>
+			</div>
+			<div class="habit-options">
+				<a href="/habits/edit/<%= h._id %>" class="text-sm habit-btn bg-green-600 hover:bg-green-900">edit</a>
+				<form class="inline-block" action="/habits/<%= h._id %>" method="post">
+					<input type="hidden" name="_method" value="DELETE" />
+					<button type="submit" class="text-sm habit-btn bg-red-600 hover:bg-red-900">delete</button>
+				</form>
 			</div>
 		</div>
 
