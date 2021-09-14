@@ -4,6 +4,7 @@
   "description": "Helping you replace bad habits with better ones",
   "main": "server.js",
   "scripts": {
+    "deploy": "node server",
     "start": "concurrently \"npm run start:*\" \"npm run start:watch:*\"",
     "start:server": "nodemon server",
     "start:watch:tailwind": "onchange tailwind.config.js ./src/css/tailwind.src.css -- npm run build:tailwind",
