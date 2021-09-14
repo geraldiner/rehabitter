@@ -16,22 +16,16 @@ habitItems.forEach(h => {
 });
 
 async function toggleCheckbox() {
-	console.log(this);
-	console.log(this.id);
-	console.log(this.value);
-	console.log(this.parentElement.outerText);
-	console.log(this.parentElement.parentElement.id);
 	try {
 		const response = await fetch(`habits/mark/${this.parentElement.parentElement.id}`, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
 				dayId: this.id,
-				value: this.value === "on" ? true : false,
+				value: this.checked,
 			}),
 		});
 		const data = await response.json();
-		console.log(data);
 		location.reload();
 	} catch (err) {
 		console.log(err);

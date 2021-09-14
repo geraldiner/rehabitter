@@ -80,7 +80,6 @@ module.exports = {
 		}
 	},
 	markHabit: async (req, res) => {
-		console.log(req.body.value);
 		try {
 			await Habit.findOneAndUpdate(
 				{
