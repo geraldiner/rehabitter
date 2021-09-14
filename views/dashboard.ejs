@@ -23,6 +23,7 @@
 				</div>
 			</div>
 			<div class="habit-options">
+				<!-- <a href="/habits/chart/<%= h._id %>" class="text-sm habit-btn bg-yellow-600 hover:bg-yellow-900">view chart</a> -->
 				<a href="/habits/edit/<%= h._id %>" class="text-sm habit-btn bg-green-600 hover:bg-green-900">edit</a>
 				<form class="inline-block" action="/habits/<%= h._id %>" method="post">
 					<input type="hidden" name="_method" value="DELETE" />

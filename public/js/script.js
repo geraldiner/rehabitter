@@ -1,4 +1,4 @@
-if (document.title.includes("Login")) {
+if (document.title.includes("Log In")) {
 	const demoLogin = document.querySelector("#demo-login");
 	demoLogin.addEventListener("click", () => {
 		const loginForm = document.querySelector("#login-form");

@@ -1,3 +1,4 @@
+const D3Node = require("d3-node");
 const Habit = require("../models/Habit");
 const getWeek = require("../middleware/getWeek");
 
@@ -93,6 +94,23 @@ module.exports = {
 				},
 			);
 			res.json("Habit has been updated");
+		} catch (err) {
+			console.log(err);
+		}
+	},
+	getChart: async (req, res) => {
+		try {
+			const habit = await Habit.findOne({ _id: req.params.id });
+			const d3n = new D3Node();
+			d3n.createSVG(10, 30).append("g");
+			const locals = {
+				title: "Charts",
+				layout: "../views/layouts/main",
+				user: req.user,
+				habit: habit,
+				svg: d3n.svgString(),
+			};
+			res.render("../views/habits/charts.ejs", locals);
 		} catch (err) {
 			console.log(err);
 		}

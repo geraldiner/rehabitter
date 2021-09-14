@@ -28,4 +28,8 @@ router.delete("/:id", ensureAuth, habitsController.deleteHabit);
 // @route PUT /habits/mark/:id
 router.put("/mark/:id", ensureAuth, habitsController.markHabit);
 
+// @desc  View charts for a specific habit
+// @route GET /habits/chart/:id
+router.get("/chart/:id", ensureAuth, habitsController.getChart);
+
 module.exports = router;
