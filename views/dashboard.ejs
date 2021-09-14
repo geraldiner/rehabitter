@@ -12,9 +12,13 @@
 			</p>
 			<div class="habit-tracker">
 				<h3 class="text-lg">Weekly Tracker</h3>
-				<div class="flex justify-between items-center">
-					<% week.forEach(w => { %>
-					<div class="day-item"><p><%= w %></p></div>
+				<div id="<%= h._id %>" class="flex justify-between items-center">
+					<% h.weeklyStats.forEach(d => { %>
+					<div class="day-item flex flex-col justify-center items-center">
+						<p><%= d.date %></p>
+						<input id='<%= d._id %>' type="checkbox" class="form-checkbox tracker-checkbox border border-2 border-gray-900 rounded-sm" <%= d.completed
+						? 'checked' : '' %> />
+					</div>
 					<% }) %>
 				</div>
 			</div>

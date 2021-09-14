@@ -22,14 +22,10 @@ router.put("/:id", ensureAuth, habitsController.postEdit);
 
 // @desc  Delete a habit
 // @route DELETE /habits/:id
-router.delete("/:id", ensureAuth, async (req, res) => {
-	try {
-		await Habit.remove({ _id: req.params.id });
-		res.redirect("/dashboard");
-	} catch (error) {
-		console.error(error);
-		res.render("error/500", { title: "Server Error", layout: "./layouts/main" });
-	}
-});
+router.delete("/:id", ensureAuth, habitsController.deleteHabit);
+
+// @desc  Mark a habit completed for a day of the week
+// @route PUT /habits/mark/:id
+router.put("/mark/:id", ensureAuth, habitsController.markHabit);
 
 module.exports = router;

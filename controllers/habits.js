@@ -1,5 +1,6 @@
 const Habit = require("../models/Habit");
 const getWeek = require("../middleware/getWeek");
+
 module.exports = {
 	getDashboard: async (req, res) => {
 		try {
@@ -9,7 +10,6 @@ module.exports = {
 				layout: "../views/layouts/main",
 				user: req.user,
 				habits: habits,
-				week: getWeek(),
 			};
 			res.render("../views/dashboard.ejs", locals);
 		} catch (error) {
@@ -27,9 +27,9 @@ module.exports = {
 	postHabit: async (req, res) => {
 		try {
 			req.body.user = req.user.id;
-			await Habit.create({ status: "incomplete", ...req.body });
+			await Habit.create({ weeklyStats: getWeek(), overallStats: [], ...req.body });
 			res.redirect("/dashboard");
-		} catch {
+		} catch (error) {
 			console.error(error);
 		}
 	},
@@ -68,6 +68,34 @@ module.exports = {
 		} catch (error) {
 			console.error(error);
 			res.render("error/500", { title: "Server Error", layout: "./layouts/main" });
+		}
+	},
+	deleteHabit: async (req, res) => {
+		try {
+			await Habit.deleteOne({ _id: req.params.id });
+			res.redirect("/dashboard");
+		} catch (error) {
+			console.error(error);
+			res.render("error/500", { title: "Server Error", layout: "./layouts/main" });
+		}
+	},
+	markHabit: async (req, res) => {
+		console.log(req.body.value);
+		try {
+			await Habit.findOneAndUpdate(
+				{
+					_id: req.params.id,
+					"weeklyStats._id": req.body.dayId,
+				},
+				{
+					$set: {
+						"weeklyStats.$.completed": req.body.value,
+					},
+				},
+			);
+			res.json("Habit has been updated");
+		} catch (err) {
+			console.log(err);
 		}
 	},
 };
