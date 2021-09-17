@@ -24,6 +24,7 @@ const HabitSchema = new mongoose.Schema({
 	weeklyStats: [
 		{
 			date: { type: String, required: true },
+			date_string: { type: String, required: true },
 			completed: { type: Boolean, required: true },
 		},
 	],
@@ -31,6 +32,7 @@ const HabitSchema = new mongoose.Schema({
 		[
 			{
 				date: { type: String, required: true },
+				date_string: { type: String, required: true },
 				completed: { type: Boolean, required: true },
 			},
 		],

@@ -6,7 +6,7 @@ const updateWeek = async user => {
 	let habits = await Habit.find({ user: user }).lean();
 	if (habits.length > 0) {
 		const startingSunday = habits[0].weeklyStats[0].date;
-		const thisWeek = moment().day(0).format("ddd [|] M[/]D");
+		const thisWeek = moment().day(0).format("YYYY-MM-DD");
 		if (startingSunday !== thisWeek) {
 			for (const habit of habits) {
 				try {
