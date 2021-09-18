@@ -5,12 +5,12 @@ const createChart = habit => {
 	const d3n = new D3Node({ selector: "#chart-map", container: '<div class="chart"><div id="chart-map"></div></div>' });
 
 	const settings = {
-		gutter: 5,
+		gutter: 3,
 		item_gutter: 1,
 		label_padding: 40,
 		width: 1000,
 		height: 200,
-		item_size: 10,
+		item_size: 15,
 		complete_color: "#40C463",
 		incomplete_color: "#dddddd",
 	};
@@ -58,9 +58,25 @@ const createChart = habit => {
 		return d.completed ? settings.complete_color : settings.incomplete_color;
 	};
 
-	const svg = d3n.createSVG("100%", 200).attr("viewBox", "0 0 800 200");
+	const svg = d3n.createSVG(1000, 200);
 
 	const items = svg.append("g");
+	const labels = svg.append("g");
+	const months = d3n.d3.timeMonths(year_start, year_end);
+	const monthScale = d3n.d3.scaleLinear().range([0, settings.width]).domain([0, months.length]);
+
+	labels
+		.selectAll("g")
+		.data(months)
+		.enter()
+		.append("text")
+		.text(d => {
+			return moment(d).format("MMM");
+		})
+		.attr("x", (d, i) => {
+			return monthScale(i) + (monthScale(i) - monthScale(i - 1)) / 2;
+		})
+		.attr("y", settings.label_padding / 2);
 
 	items
 		.selectAll("g")
