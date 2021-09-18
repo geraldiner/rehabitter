@@ -1,7 +1,11 @@
 <div class="w-4/5 bg-white p-4 rounded-md mx-auto space-y-4">
-	<h4 class="text-sm font-bold uppercase">Charts for <%= habit.name %></h4>
-	<h2 class="text-xl">Hello, <%= user.firstName %></h2>
-	<div class="w-100 overflow-x-auto"><%- chart %></div>
+	<h4 class="text-sm font-bold uppercase">Year Overview for <%= habit.name %></h4>
+	<p class="habit-desc">
+		I want to change my habit of <span class="habit-val"><%= habit.name %></span>. It gives me <span class="habit-val"><%= habit.gives %></span>. But
+		I can replace it with <span class="habit-val"><%= habit.replacement %></span>. So I will
+		<span class="habit-val"><%= habit.change %></span> instead.
+	</p>
+	<div class="w-100 overflow-x-auto my-4"><%- chart %></div>
 	<a href="/dashboard" class="text-sm habit-btn bg-blue-600 hover:bg-blue-900">back to dashboard</a>
 </div>
 

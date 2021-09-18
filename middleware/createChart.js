@@ -2,7 +2,7 @@ const D3Node = require("d3-node");
 const moment = require("moment");
 
 const createChart = habit => {
-	const d3n = new D3Node();
+	const d3n = new D3Node({ selector: "#chart-map", container: '<div class="chart"><div id="chart-map"></div></div>' });
 
 	const settings = {
 		gutter: 5,
@@ -22,8 +22,7 @@ const createChart = habit => {
 	}
 
 	const year_start = moment().startOf("year");
-	const habit_start = moment(habit.createdAt);
-	console.log(habit_start);
+	const habit_start = moment(habit.weeklyStats[0].date);
 	const year_end = moment().endOf("year");
 	const empty_days = habit_start.diff(year_start, "days") + 1;
 
@@ -59,8 +58,7 @@ const createChart = habit => {
 		return d.completed ? settings.complete_color : settings.incomplete_color;
 	};
 
-	// create svg container
-	const svg = d3n.createSVG(1000, 200);
+	const svg = d3n.createSVG("100%", 200).attr("viewBox", "0 0 800 200");
 
 	const items = svg.append("g");
 
