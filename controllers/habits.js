@@ -111,7 +111,7 @@ module.exports = {
 				habit: habit,
 				chart: chart,
 			};
-			res.render("../views/habits/charts.ejs", locals);
+			res.render("../views/habits/chart.ejs", locals);
 		} catch (err) {
 			console.log(err);
 		}

@@ -11,8 +11,8 @@ const createChart = habit => {
 		width: 1000,
 		height: 200,
 		item_size: 10,
-		complete_color: "#00ff00",
-		incomplete_color: "#bbbbbb",
+		complete_color: "#40C463",
+		incomplete_color: "#dddddd",
 	};
 
 	// All data so far
@@ -21,13 +21,28 @@ const createChart = habit => {
 		data = [...data, ...week];
 	}
 
-	// Sort data from oldest to newest
-	data.sort((a, b) => new Date(a.date) - new Date(b.date));
-
 	const year_start = moment().startOf("year");
+	const habit_start = moment(habit.createdAt);
+	console.log(habit_start);
 	const year_end = moment().endOf("year");
+	const empty_days = habit_start.diff(year_start, "days") + 1;
 
 	const year_data = data.filter(d => year_start <= moment(d.date) && moment(d.date) < year_end);
+
+	if (empty_days > 0) {
+		for (let i = 1; i < empty_days; i++) {
+			let d = moment().dayOfYear(i);
+			let day = {
+				date: d.format("YYYY-MM-DD"),
+				date_string: d.format("ddd [|] M[/]D"),
+				completed: false,
+			};
+			year_data.push(day);
+		}
+	}
+
+	// Sort data from oldest to newest
+	year_data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
 	const calcItemX = d => {
 		const date = moment(d.date);
