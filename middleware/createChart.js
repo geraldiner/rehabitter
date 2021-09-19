@@ -17,19 +17,23 @@ const createChart = habit => {
 
 	// All data so far
 	let data = [...habit.weeklyStats];
-	for (const week of habit.overallStats) {
-		data = [...data, ...week];
+	let oldStats = habit.overallStats;
+	oldStats.shift();
+	if (oldStats.length > 0) {
+		for (const week of oldStats) {
+			data = [...data, ...week];
+		}
 	}
 
 	const year_start = moment().startOf("year");
 	const habit_start = moment(habit.weeklyStats[0].date);
 	const year_end = moment().endOf("year");
-	const empty_days = habit_start.diff(year_start, "days") + 1;
+	const empty_days = habit_start.diff(year_start, "days");
 
 	const year_data = data.filter(d => year_start <= moment(d.date) && moment(d.date) < year_end);
 
 	if (empty_days > 0) {
-		for (let i = 1; i < empty_days; i++) {
+		for (let i = 1; i <= empty_days; i++) {
 			let d = moment().dayOfYear(i);
 			let day = {
 				date: d.format("YYYY-MM-DD"),
@@ -42,6 +46,10 @@ const createChart = habit => {
 
 	// Sort data from oldest to newest
 	year_data.sort((a, b) => new Date(a.date) - new Date(b.date));
+	console.log(year_data[253]);
+	console.log(year_data[254]);
+	console.log(year_data[255]);
+	console.log(year_data[256]);
 
 	const calcItemX = d => {
 		const date = moment(d.date);
