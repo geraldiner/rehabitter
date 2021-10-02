@@ -13,15 +13,14 @@ const createChart = habit => {
 		item_size: 15,
 		complete_color: "#40C463",
 		incomplete_color: "#dddddd",
+		tooltip_width: 250,
+		tooltip_padding: 15,
 	};
 
-	// All data so far
-	let data = [...habit.weeklyStats];
-	let oldStats = habit.overallStats;
-	oldStats.shift();
-	if (oldStats.length > 0) {
-		for (const week of oldStats) {
-			data = [...data, ...week];
+	let combined = [...habit.weeklyStats];
+	for (const week of habit.overallStats) {
+		for (const day of week) {
+			combined.push(day);
 		}
 	}
 
@@ -29,8 +28,7 @@ const createChart = habit => {
 	const habit_start = moment(habit.weeklyStats[0].date);
 	const year_end = moment().endOf("year");
 	const empty_days = habit_start.diff(year_start, "days");
-
-	const year_data = data.filter(d => year_start <= moment(d.date) && moment(d.date) < year_end);
+	const year_days = [];
 
 	if (empty_days > 0) {
 		for (let i = 1; i <= empty_days; i++) {
@@ -40,16 +38,15 @@ const createChart = habit => {
 				date_string: d.format("ddd [|] M[/]D"),
 				completed: false,
 			};
-			year_data.push(day);
+			year_days.push(day);
 		}
 	}
 
+	const year_data = combined.filter(d => year_start <= moment(d.date) && moment(d.date) < year_end);
+	const data = year_days.concat(year_data);
+
 	// Sort data from oldest to newest
-	year_data.sort((a, b) => new Date(a.date) - new Date(b.date));
-	console.log(year_data[253]);
-	console.log(year_data[254]);
-	console.log(year_data[255]);
-	console.log(year_data[256]);
+	data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
 	const calcItemX = d => {
 		const date = moment(d.date);
@@ -71,7 +68,11 @@ const createChart = habit => {
 	const items = svg.append("g");
 	const labels = svg.append("g");
 	const months = d3n.d3.timeMonths(year_start, year_end);
+	const tooltip = d3n.d3.select(d3n.document.querySelector(".chart")).append("div").attr("class", "cal-tooltip").style("opacity", 0);
 	const monthScale = d3n.d3.scaleLinear().range([0, settings.width]).domain([0, months.length]);
+	for (let i = 255; i <= 266; i++) {
+		console.log(data[i]);
+	}
 
 	labels
 		.selectAll("g")
@@ -88,7 +89,7 @@ const createChart = habit => {
 
 	items
 		.selectAll("g")
-		.data(year_data)
+		.data(data)
 		.enter()
 		.append("rect")
 		.attr("x", function (d) {
@@ -103,7 +104,7 @@ const createChart = habit => {
 			return colorItem(d);
 		});
 
-	return d3n.svgString();
+	return d3n.html();
 };
 
 module.exports = createChart;
