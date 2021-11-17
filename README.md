@@ -8,7 +8,7 @@ A habit tracking app to facilitate the process of replacing bad habits with bett
 
 ![Rehabitter demo](https://i.imgur.com/AXePo3s.gif)
 
-## How It's Made:
+## How It's Made
 
 **Tech used:** HTML, CSS, JavaScript, TailwindCSS, NodeJS, ExpressJS, MomentJS, D3JS, MongoDB
 
@@ -18,7 +18,7 @@ The project is built on Node and Express on the backend, and I use EJS to serve 
 
 I learned how to use the `@apply` directive for Tailwind, which helped immensely for applying the same styling for similar items. For example, all the buttons are styled similarly and the only difference is the color. This helps to cut down on redundant code.
 
-## Lessons Learned:
+## Lessons Learned
 
 I learned a lot about using D3 in this project, especially that there is a specific package for it when using it on the backend 😅 I remember using it very briefly in college before, but this was the first time I used it in a project like this one. I did reference code from this [Rising Stack tutorial](https://blog.risingstack.com/tutorial-d3-js-calendar-heatmap/) and [@g1eb's own creation](https://github.com/g1eb/calendar-heatmap/blob/master/src/calendar-heatmap.js), but they were both already working on the front-end side, not the D3Node version.
 
