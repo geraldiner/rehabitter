@@ -24,6 +24,7 @@ I learned a lot about using D3 in this project, especially that there is a speci
 
 I also learned that it's a good idea to figure out the data/model first before moving forward with implementation. I had to reset the dummy data a couple times because I realized I didn't have a good way of checking whether or not a new week was starting. This was important because the dashboard only shows a weekly view, and I'd need to archive the data from weeks that passed. But at the same time, I wanted an easy way to display the date in a more human-friendly format. I ended up storing both versions to make it easier for me in the future.
 
+
 ## Other Projects
 
 Check out other stuff I've worked on:
@@ -31,6 +32,8 @@ Check out other stuff I've worked on:
 **Minute To Win It Games API & Wiki**: https://github.com/geraldiner/min-to-win
 
 **Rehabitter:** https://github.com/geraldiner/rehabitter
+
+**Snapchat Clone:** https://github.com/geraldiner/snapchat-clone
 
 **K.K. Radio:** https://github.com/geraldiner/kk-radio
 
