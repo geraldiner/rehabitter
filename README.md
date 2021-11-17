@@ -28,6 +28,8 @@ I also learned that it's a good idea to figure out the data/model first before m
 
 Check out other stuff I've worked on:
 
+**Rehabitter:** https://github.com/geraldiner/rehabitter
+
 **K.K. Radio:** https://github.com/geraldiner/kk-radio
 
 **Interactive Piano:** https://github.com/geraldiner/piano
