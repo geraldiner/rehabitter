@@ -4,8 +4,6 @@ A habit tracking app to facilitate the process of replacing bad habits with bett
 
 ### Project Links
 
-**Live site**: https://rehabitter.herokuapp.com
-
 ![Rehabitter demo](https://i.imgur.com/AXePo3s.gif)
 
 ## How It's Made
