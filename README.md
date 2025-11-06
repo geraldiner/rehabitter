@@ -2,8 +2,6 @@
 
 A habit tracking app to facilitate the process of replacing bad habits with better ones. Originally borne out of [Amber Rae's template on Instagram](https://www.instagram.com/p/Bu3_RwPBM2_/), when you add a new habit, you have to come up with something else to replace it. Kinda like how smokers trying to quit go on the patch? (And that's how the name was born 🐇🥕) As time goes by, you can view your progress in a simple calendar heatmap, just like GitHub's contribution chart.
 
-### Project Links
-
 ![Rehabitter demo](https://i.imgur.com/AXePo3s.gif)
 
 ## How It's Made
